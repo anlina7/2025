@@ -11,7 +11,10 @@ client = genai.Client(api_key=API_KEY)
 def classify_and_reply(email_body: str) -> str:
     prompt = (
         "Classify this email as one of: support, complaint, general, promo, spam. "
-        "Then write a short reply suited to that category.\n"
+        "Then write a short reply suited to that category. You must write the reply"
+         "in the same language as the email body itself\n"
+         "Always put this signature: EasyAgents support team"
+         "Important: always try to identify spam and if so do not write reply to those emails."
         f"Email: {email_body}"
     )
     response = client.models.generate_content(
